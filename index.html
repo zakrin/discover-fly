@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flight Booking</title>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Roboto:wght@400;500;700&display=swap"
+        rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css" rel="stylesheet" />
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <!--Header and Menu Section-->
+    <header class="container">
+        <nav>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">About Us</a></li>
+                <li><a href="#">Contact</a></li>
+                <li><a class="active" href="#">Sign Up</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!--Booking Section-->
+    <main class="main-content container">
+        <div class="booking-form">
+            <h3>Booking Flights</h3>
+            <div class="input-group">
+                <label for="">Flying From</label>
+                <input class="inp-style" type="text" name="" placeholder="Dhaka, Bangladesh">
+            </div>
+            <div class="input-group">
+                <label for="">Flying To</label>
+                <input class="inp-style" type="text" name="" placeholder="New York, United States">
+            </div>
+            <div class="inputs">
+                <div class="input-group">
+                    <label" for="">Departure</label>
+                        <input class="inp-style" type="date" name="">
+                </div>
+                <div class="input-group">
+                    <label for="">Return</label>
+                    <input class="inp-style" type="date" name="">
+                </div>
+            </div>
+            <div class="input-group f-class">
+                <div>
+                    <label id="firstFare-total" for="">First Class ($150)</label>
+                    <input id="firstFare-count" type="text" class=" form-control inp-style inp-width" value="0">
+                    <!-- <input class="inp-style inp-width" type="number" name=""> -->
+                </div>
+                <div class="plus-minus-btn">
+                    <button onclick="handleFareChange('firstFare',true)" class="btn btn-success"><i
+                            class="fas fa-plus"></i></button>
+                    <button onclick="handleFareChange('firstFare',false)" class="btn btn-success"><i
+                            class="fas fa-minus"></i></button>
+
+                    
+                </div>
+            </div>
+
+            <div class="input-group f-class">
+                <div>
+
+                    <label id="fare-total" for="">Economy ($100)</label>
+
+                    <input id="fare-count" type="text" class=" form-control inp-style inp-width" value="0">
+                    
+                </div>
+                <div class="plus-minus-btn">
+                    <button onclick="handleFareChange('fare',true)" class="btn btn-success"><i
+                            class="fas fa-plus"></i></button>
+                    <button onclick="handleFareChange('fare',false)" class="btn btn-success"><i
+                            class="fas fa-minus"></i></button>
+                    
+                </div>
+            </div>
+            <div class="calculations">
+                <div class="amount">
+                    <div class="left">
+                        <p>Subtotal</p>
+                    </div>
+                    <div class="right">
+                        <p id="total-cost">$000</p>
+                    </div>
+                </div>
+
+                <div class="amount">
+                    <div class="left">
+                        <p>Charge 10% VAT</p>
+                    </div>
+                    <div class="right">
+                        <p id="tax-amount">$00</p>
+                    </div>
+                </div>
+                <hr>
+                <div class="amount">
+                    <div class="left">
+                        <h4>Total</h4>
+                    </div>
+                    <div class="right">
+                        <p id="grand-total">$000</p>
+                    </div>
+                </div>
+            </div>
+            <button id="btnBook" class="btn-style">Book Now</button>
+
+        </div>
+
+        <div class="booking-content">
+            <h1>discover <br> around the world</h1>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicingelit. Provident voluptatibus quam fuga laborumalias
+                veniam libero autem quasi maxime ullam vero nama imi dolor, architecto ab facilis eaque deserunt nobise
+                voluptatibus quam</p>
+        </div>
+
+        <script>
+
+            // function .....
+            function handleFareChange(price, isAdded) {
+
+                const priceCount = getInputValue(price);
+                let priceNewCount = priceCount;
+                if (isAdded == true) {
+                    priceNewCount = priceCount + 1;
+                }
+                if (isAdded == false && priceCount > 0) {
+                    priceNewCount = priceCount - 1;
+                }
+                document.getElementById(price + '-count').value = priceNewCount;
+
+                let priceTotal = 0;
+                if (price == 'firstFare') {
+                    priceTotal = priceNewCount * 150;
+                }
+
+                if (price == 'fare')
+                    priceTotal = priceNewCount * 100;
+
+                calculateTotal();
+
+            }
+
+            // calculation...
+
+            function calculateTotal() {
+
+                const firstFareCount = getInputValue('firstFare');
+                const fareCount = getInputValue('fare');
+
+                const totalCost = firstFareCount * 150 + fareCount * 100;
+                document.getElementById('total-cost').innerText = '$' + totalCost;
+
+                const tax = Math.round(totalCost * 0.1);
+                document.getElementById('tax-amount').innerText = '$' + tax;
+
+                const grandTotal = totalCost + tax;
+                document.getElementById('grand-total').innerText = '$' + grandTotal;
+
+
+
+            }
+
+            //  input value...
+
+            function getInputValue(price) {
+                const priceInput = document.getElementById(price + '-count');
+                const priceCount = parseInt(priceInput.value);
+                return priceCount;
+            }
+            
+            //  alert message...
+            document.getElementById('btnBook').addEventListener('click', purchaseClicked);
+
+            function purchaseClicked() {
+                alert('Thank you for your booking');
+            }
+
+            
+
+              
+
+
+
+
+           
+            
+
+        </script>
+
+        </section>
+
+        <!--Thank You-->
+</body>
+
+</html>
