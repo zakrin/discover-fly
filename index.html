@@ -61,7 +61,7 @@
                     <button onclick="handleFareChange('firstFare',false)" class="btn btn-success"><i
                             class="fas fa-minus"></i></button>
 
-                    
+
                 </div>
             </div>
 
@@ -71,14 +71,14 @@
                     <label id="fare-total" for="">Economy ($100)</label>
 
                     <input id="fare-count" type="text" class=" form-control inp-style inp-width" value="0">
-                    
+
                 </div>
                 <div class="plus-minus-btn">
                     <button onclick="handleFareChange('fare',true)" class="btn btn-success"><i
                             class="fas fa-plus"></i></button>
                     <button onclick="handleFareChange('fare',false)" class="btn btn-success"><i
                             class="fas fa-minus"></i></button>
-                    
+
                 </div>
             </div>
             <div class="calculations">
@@ -122,7 +122,7 @@
 
         <script>
 
-            // function .....
+            // function 
             function handleFareChange(price, isAdded) {
 
                 const priceCount = getInputValue(price);
@@ -163,6 +163,7 @@
                 const grandTotal = totalCost + tax;
                 document.getElementById('grand-total').innerText = '$' + grandTotal;
 
+                return grandTotal;
 
 
             }
@@ -174,23 +175,26 @@
                 const priceCount = parseInt(priceInput.value);
                 return priceCount;
             }
-            
-            //  alert message...
-            document.getElementById('btnBook').addEventListener('click', purchaseClicked);
 
+            // book btn Alert message ...
+            document.getElementById('btnBook').addEventListener('click', purchaseClicked);
             function purchaseClicked() {
-                alert('Thank you for your booking');
+                alert('Your grand total' + ' = ' + '$' + calculateTotal());
             }
 
-            
-
-              
 
 
 
 
-           
-            
+
+
+
+
+
+
+
+
+
 
         </script>
 
